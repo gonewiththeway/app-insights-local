@@ -54,3 +54,6 @@ A dictionary containing insights about the specified repository.
 curl -X 'GET' \
   'http://localhost:8000/repositories?userid=user1' \
   -H 'accept: application/json'
+
+
+https://app-insights-local.onrender.com/docs
