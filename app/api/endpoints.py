@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from typing import List, Dict
 
 router = APIRouter()
@@ -21,12 +21,23 @@ insights = {
     "repoZ": {"stars": 18, "forks": 6, "issues": 4},
 }
 
-@router.get("/repositories", response_model=List[str])
+@router.get("/repositories", response_model=List[str], summary="Get Repositories", description="Retrieve a list of repositories for a given user.")
 def get_repositories(userid: str):
+    """
+    Fetches a list of repositories for the specified user.
+    - **userid**: The ID of the user.
+    """
+    if userid not in repositories:
+        raise HTTPException(status_code=404, detail="User not found")
     return repositories.get(userid, [])
 
-@router.get("/insights", response_model=Dict[str, int])
+@router.get("/insights", response_model=Dict[str, int], summary="Get Repository Insights", description="Retrieve insights about a specific repository for a given user.")
 def get_insights(userid: str, repo: str):
-    if repo in repositories.get(userid, []):
-        return insights.get(repo, {})
-    return {}
+    """
+    Fetches insights for a specific repository.
+    - **userid**: The ID of the user.
+    - **repo**: The name of the repository.
+    """
+    if userid not in repositories or repo not in repositories[userid]:
+        raise HTTPException(status_code=404, detail="Repository not found for the user")
+    return insights.get(repo, {})
