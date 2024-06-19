@@ -28,9 +28,9 @@ def get_repositories(userid: str):
         raise HTTPException(status_code=404, detail="User not found")
     
     # Transform the list of repository names into the desired format
-    repo_list = [{"repo": repo} for repo in repositories[userid]]
+    repo_list = [{"title": repo, "value": repo} for repo in repositories[userid]]
     
-    return {userid: repo_list}
+    return {"user": repo_list}
 
 @router.get("/insights", response_model=Dict[str, int], summary="Get Repository Insights", description="Retrieve insights about a specific repository for a given user.")
 def get_insights(userid: str, repo: str):

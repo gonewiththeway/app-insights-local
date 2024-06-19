@@ -1,8 +1,9 @@
-from pydantic import BaseModel, RootModel
-from typing import List, Dict
+from pydantic import BaseModel
+from typing import List
 
 class RepoItem(BaseModel):
-    repo: str
+    title: str
+    value: str
 
-class UserRepos(RootModel):
-    root: Dict[str, List[RepoItem]]
+class UserRepos(BaseModel):
+    user: List[RepoItem]
