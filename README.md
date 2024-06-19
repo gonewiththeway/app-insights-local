@@ -1,3 +1,9 @@
+![CI](https://github.com/gonewiththeway/app-insights-local/workflows/CI/badge.svg)
+
+This is a FastAPI application that provides two endpoints:
+1. Get a list of repositories for a given user.
+2. Get insights about a specific repository for a given user.
+
 
 ## Installation
 
