@@ -1,2 +1,8 @@
-# This file is empty for now as we are not using any models, 
-# but it can be used for defining Pydantic models if needed in the future.
+from pydantic import BaseModel, RootModel
+from typing import List, Dict
+
+class RepoItem(BaseModel):
+    repo: str
+
+class UserRepos(RootModel):
+    root: Dict[str, List[RepoItem]]
