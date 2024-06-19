@@ -5,9 +5,9 @@ router = APIRouter()
 
 # Mock data
 repositories = {
-    "user1": ["repo1", "repo2", "repo3"],
-    "user2": ["repoA", "repoB"],
-    "user3": ["repoX", "repoY", "repoZ"]
+    "user1": [{"repo": "repo1"}, {"repo": "repo2"}, {"repo": "repo3"}],
+    "user2": [{"repo": "repoA"}, {"repo": "repoB"}],
+    "user3": [{"repo": "repoX"}, {"repo": "repoY"}, {"repo": "repoZ"}]
 }
 
 insights = {
