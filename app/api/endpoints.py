@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from typing import List, Dict
 from app.models.repository import RepoItem, UserRepos
+from app.models.insights import Insight, InsightsResponse
 
 router = APIRouter()
 
@@ -37,3 +38,13 @@ def get_insights(userid: str, repo: str):
     if userid not in repositories or repo not in repositories[userid]:
         raise HTTPException(status_code=404, detail="Repository not found for the user")
     return insights.get(repo, {})
+
+@router.get("/user-insights", response_model=InsightsResponse, summary="Get User Insights", description="Retrieve insights for a user.")
+def get_user_insights():
+    return InsightsResponse(
+        title="Clara King",
+        subtitle="exceeds tech team · Tenure: 1.8 years · Last rating Meet All · Last Promo May 2024",
+        insights1=Insight(title="5566", value="Adaptive Cards"),
+        insights2=Insight(title="60%", value="Bug Fix Rate"),
+        insights3=Insight(title="8 min", value="Response Time")
+    )
